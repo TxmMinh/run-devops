@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "Ax9FbY7RBY3oE4c+mC68OcXX2ENsaUe+V6NTmQgVolJOBK71CXu9trHR2j9Evve2///lFl1j7NFkUdrDp8QlVA==",
+  "success": true,
+  "projectFilePath": "E:\\#UIT\\33-Cloud-Computing\\BTL\\Azure-DevOps\\run-devops\\Shopping\\Shopping.Client\\Shopping.Client.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\21520\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.19.4\\microsoft.visualstudio.azure.containers.tools.targets.1.19.4.nupkg.sha512"
+  ],
+  "logs": []
+}
