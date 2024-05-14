@@ -62,3 +62,6 @@ E:\#UIT\33-Cloud-Computing\BTL\Azure-DevOps\run-devops\Shopping\Shopping.Client\
 E:\#UIT\33-Cloud-Computing\BTL\Azure-DevOps\run-devops\Shopping\Shopping.Client\obj\Debug\net6.0\Shopping.Client.pdb
 E:\#UIT\33-Cloud-Computing\BTL\Azure-DevOps\run-devops\Shopping\Shopping.Client\obj\Debug\net6.0\Shopping.Client.genruntimeconfig.cache
 E:\#UIT\33-Cloud-Computing\BTL\Azure-DevOps\run-devops\Shopping\Shopping.Client\obj\Debug\net6.0\ref\Shopping.Client.dll
+E:\#UIT\33-Cloud-Computing\BTL\Azure-DevOps\run-devops\Shopping\Shopping.Client\bin\Debug\net6.0\Newtonsoft.Json.dll
+E:\#UIT\33-Cloud-Computing\BTL\Azure-DevOps\run-devops\Shopping\Shopping.Client\obj\Debug\net6.0\Shopping.Client.csproj.AssemblyReference.cache
+E:\#UIT\33-Cloud-Computing\BTL\Azure-DevOps\run-devops\Shopping\Shopping.Client\obj\Debug\net6.0\Shopping.Client.csproj.CopyComplete

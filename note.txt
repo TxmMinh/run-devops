@@ -1,0 +1,159 @@
+build docker image
+
+- Run container:
+docker run -d -p 8080:80 --name myapp shoppingclient
+myapp: container name
+shoppingclient docker image
+
+- Push image to docker hub (Container Registry):
+docker login
+Tag a Docker image with a repository on Docker Hub:
+docker tag <imageID> <repository-in-dockerHub(txmminh/shoppingapp)>
+docker push <repository-in-dockerHub(txmminh/shoppingapp)>:latest
+
+- Deploy container from DockerHub to Azure use Web App for Container
+
+- Pull docker image mongo from Docker Hub
+- Run mongo image to container:
+docker run -d -p 27017:27017 --name shopping-mongo mongo
+- Container shell access (Interactive Terminal for MongoDb Connection):
+docker exec -it shopping-mongo /bin/bash
+- Run Mongo commands:
+mongosh
+- Show Databases:
+show dbs
+- Create new DB:
+use Db-name
+- Create new Collection in DB:
+db.createCollection('Collection-names')
+Example:
+db.createCollection('Products')
+
+- Insert data to Collection:
+Example:
+db.Products.insertMany([
+{'Name': 'Asus Laptop', 'Category':'Computers', 'Summary':'Summary','Description':'Description','ImageFile':'ImageFile','Price':54.93},{'Name': 'HP Laptop', 'Category':'Computers', 'Summary':'Summary','Description':'Description','ImageFile':'ImageFile','Price':88.93}])
+
+- Get data in Collecton:
+dc.Collection-Name.find()
+
+- Delele all data IN Collection:
+db.Products.deleteMany({})
+
+show databases
+show collections
+
+- stop all containers:
+docker stop $(docker ps -q)
+- remove all containers:
+docker rm $(docker ps -a -q)
+- remove all docker images:
+docker rmi $(docker images -q)
+- Clean up docker resource:
+ docker system prune
+
+- Remove docker image ID:
+docker rmi <image-name> -f
+
+- Pull and Build images + run all container in docker-compose
+docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
+- Stop and delete all container in docker-compose:
+docker-compose -f docker-compose.yml -f docker-compose.override.yml down
+
+
+Kubernetes:
+- Run a particular image on the cluster:  
+kubectl run NAME --image=image
+Example: Start a single instance of nginx
+kubectl run swn-nginx --image=nginx 
+
+- Lists all resources in your Kubernetes cluster:
+kubectl get all
+
+- Access internal cluster resources from outside the cluster
+(access the service running inside the pod via your local machine's port 8080)
+kubectl port-forward swn-nginx 8080:80
+
+- Get pod
+kubectl get pod
+- Delete pod
+kubectl delete pod <pod-name>
+
+
+1/ Kubernetes Imperative:
+- Creates a new deployment in your Kubernetes cluster, using the NGINX Docker image:
+(This deployment will manage one or more pods running the NGINX container, and create pod - replicaset - deployment)
+kubectl create deployment nginx-depl<deployment-name> --image=nginx
+
+- Get replicaset
+kubectl get replicaset
+
+- Get deployment
+kubectl get deployment
+
+- Edit deployment
+kubectl edit deployment ngix-depl<deployment-name>
+
+- Create mongo deployment
+ kubectl create deployment mongo-depl --image=mongo
+
+- Describe pod:
+kubectl describe pod <pod-name>
+
+- Create an interactive terminal:
+kubectl exec <pod-name> -it sh
+
+- Get deployment:
+kubectl get deployment
+
+- Delete deployment (it's so delete corresponding pod and replicaset ):
+kubectl delete deployment <deployment-name>
+
+
+2/ Kubernetes Declarative:
+Create or update file.yaml to create deployment include create pod and replicaset
+kubectl apply -f .\<file-name>.yaml
+
+Delete all info in file yaml (service/deployment/replicaset/pod/secret/configmap)
+kubectl delete -f .\<file-name>.yaml
+
+- check kubernetes yaml file:
+kubectl get deployment <deployment-name> -o yaml
+
+- Describe service:
+kubectl describe service <service-name>
+
+
+kubectl get pod -o wide
+
+
+- Deploy kubernetes operation to see the dashboard UI:
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml
+
+
+- Get Kubernetes Secret:
+kubectl get secret
+
+- Get Kubernetes ConfigMap
+kubectl get cm
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
