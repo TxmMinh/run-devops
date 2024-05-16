@@ -137,6 +137,11 @@ kubectl get secret
 - Get Kubernetes ConfigMap
 kubectl get cm
 
+- Return all configurations:
+kubectl config get-contexts
+
+- Return current context of your kubernetes cluster:
+kubectl config current-contexts
 
 
 
