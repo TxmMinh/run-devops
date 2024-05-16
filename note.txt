@@ -137,23 +137,35 @@ kubectl get secret
 - Get Kubernetes ConfigMap
 kubectl get cm
 
+- Azure login:
+az login
 
+- Create a Azure Resource group:
+az group create --name myResourceGroup --location westeurope
 
+- Create an Azure Container Registry:
+az acr create --resource-group myResourceGroup --name shoppingacr61524 --sku Basic
 
+- Enable Admin user:
+az acr update -n shoppingacr61524 --admin-enable true
 
+- Login to Azure Container Registry:
+az acr login --name shoppingacr61524
 
+- Get Azure login server name:
+az acr list --resource-group myResourceGroup --query "[].{acrLoginServer:loginServer}" --output table
 
+- Tag Docker image with a repository on ACR:
+docker tag shoppingapi:latest shoppingacr61524.azurecr.io/shoppingapi:v1
 
+- Push image to ACR:
+docker push <azure-image>shoppingacr61524.azurecr.io/shoppingapi:v1
 
+- List image on ACR:
+az acr repository list --name shoppingacr61524 --output table
 
+- Show tag of image in repository on ACR:
+ az acr repository show-tags --name shoppingacr61524 --repository shoppingapi --output table 
 
-
-
-
-
-
-
-
-
-
-
+-
+az aks create --resource-group myResourceGroup --name myAKSCluster --node-count 1 --generate-ssh-keys --attach-acr shoppingacr61524
