@@ -70,6 +70,9 @@ kubectl run swn-nginx --image=nginx
 - Lists all resources in your Kubernetes cluster:
 kubectl get all
 
+- Get Kubernetes node:
+kubectl get nodes
+
 - Access internal cluster resources from outside the cluster
 (access the service running inside the pod via your local machine's port 8080)
 kubectl port-forward swn-nginx 8080:80
@@ -147,7 +150,7 @@ kubectl config current-contexts
 az login
 
 - Create a Azure Resource group:
-az group create --name myResourceGroup --location westeurope
+az group create --name myResourceGroup --location northeurope
 
 - Create an Azure Container Registry:
 az acr create --resource-group myResourceGroup --name shoppingacr61524 --sku Basic
@@ -158,20 +161,53 @@ az acr update -n shoppingacr61524 --admin-enable true
 - Login to Azure Container Registry:
 az acr login --name shoppingacr61524
 
-- Get Azure login server name:
+- Get ACR login server name:
 az acr list --resource-group myResourceGroup --query "[].{acrLoginServer:loginServer}" --output table
 
 - Tag Docker image with a repository on ACR:
 docker tag shoppingapi:latest shoppingacr61524.azurecr.io/shoppingapi:v1
 
 - Push image to ACR:
-docker push <azure-image>shoppingacr61524.azurecr.io/shoppingapi:v1
+docker push <Azue-name-image:version>shoppingacr61524.azurecr.io/shoppingapi:v1
 
 - List image on ACR:
 az acr repository list --name shoppingacr61524 --output table
 
 - Show tag of image in repository on ACR:
- az acr repository show-tags --name shoppingacr61524 --repository shoppingapi --output table 
+az acr repository show-tags --name shoppingacr61524 --repository shoppingapi --output table 
 
--
+- Create Azure Kubernetes Service:
 az aks create --resource-group myResourceGroup --name myAKSCluster --node-count 1 --generate-ssh-keys --attach-acr shoppingacr61524
+
+- Install AKS Azure CLI:
+az aks install-cli
+
+- Get access credential for a managed Kubernetes cluster:
+az aks get-credentials --resource-group myResourceGroup --name myAKSCluster
+
+- Get Password for ACR from Azure Portal: ACR Access keys
+
+- Create image pull Secret for ACR container:
+kubectl create secret docker-registry acr-secret --docker-server=shoppingacr61524.azurecr.io --docker-username=shoppingacr61524 --docker-password=yzugsgXDKkes/RBcI7EZB7QCPlpVjOaNkQjKbPRubJ+ACRBxxClD --docker-email=21520352@ms.uit.edu.vn
+
+- Get Secret information in kubectl:
+kubectl get secret
+
+- Run k8s Manifest yaml file for Deploying AKS:
+ kubectl apply -f .\aks\
+
+- Set type LoadBalancer for shoppingclient-service:
+that means we are open an IP for external calls
+
+- Scale the number of replicas for a specific Kubernetes deployment:
+kubectl scale --replicas=3 deployment.apps/shoppingclient-deployment
+(This means Kubernetes will ensure there are 3 instances (pods) of the application running)
+
+- Check version of AKS:
+az aks show --resource-group myResourceGroup --name myAKSCluster --query kubernetesVersion --output table
+
+- Get autoscale definitions:
+kubectl get hpa
+
+- Get More information of Deployment:
+kubectl get deployment -o wide
