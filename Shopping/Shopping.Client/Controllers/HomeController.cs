@@ -31,6 +31,21 @@ namespace Shopping.Client.Controllers
             return View(products);
         }
 
+        public async Task<IActionResult> Detail(string id)
+        {
+            var response = await _httpClient.GetAsync($"/Product/{id}");
+
+            if (response == null)
+            {
+                return View("Error");
+            }
+
+            var content = await response.Content.ReadAsStringAsync();
+            var product = JsonConvert.DeserializeObject<Product>(content);
+
+            return View(product);
+        }
+
         public IActionResult Privacy()
         {
             return View();

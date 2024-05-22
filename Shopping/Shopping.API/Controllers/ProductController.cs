@@ -2,12 +2,16 @@
 using MongoDB.Driver;
 using Shopping.API.Data;
 using Shopping.API.Models;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
+using System;
 
 namespace Shopping.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ProductController
+    public class ProductController : ControllerBase
     {
         private readonly ProductContext _context;
         private readonly ILogger<ProductController> _logger;
@@ -27,5 +31,17 @@ namespace Shopping.API.Controllers
                             .ToListAsync();
         }
 
+        [HttpGet("{id:length(24)}", Name = "GetProduct")]
+        public async Task<ActionResult<Product>> GetById(string id)
+        {
+            var product = await _context.Products.Find(p => p.Id == id).FirstOrDefaultAsync();
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(product);
+        }
     }
 }

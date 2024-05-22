@@ -1,0 +1,45 @@
+@model IEnumerable<Shopping.Client.Models.Cart>
+
+@{
+    ViewData["Title"] = "Shopping Cart";
+}
+
+<link rel="stylesheet" href="~/css/site.css" />
+
+<h1>Your Shopping Cart</h1>
+@if (!Model.Any())
+{
+    <p>Your cart is empty.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Customer Name</th>
+                <th>Cart Date</th>
+                <th>Total Price</th>
+                <th>Items</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cart in Model)
+            {
+                <tr>
+                    <td>@cart.CustomerName</td>
+                    <td>@cart.CartDate.ToString("g")</td>
+                    <td>@cart.TotalPrice.ToString("C")</td>
+                    <td>
+                        <ul>
+                            @foreach (var item in cart.Items)
+                            {
+                                <li>@item.ProductName - @item.Quantity</li>
+                            }
+                        </ul>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+<p><a href="@Url.Action("Create", "Cart")" class="btn btn-primary">Add New Cart</a></p>
