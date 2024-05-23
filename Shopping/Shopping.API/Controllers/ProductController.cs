@@ -43,5 +43,31 @@ namespace Shopping.API.Controllers
 
             return Ok(product);
         }
+
+        [HttpPost]
+        public async Task<ActionResult<Product>> Create([FromBody] Product product)
+        {
+            if (product == null)
+            {
+                return BadRequest("Product is null.");
+            }
+
+            await _context.Products.InsertOneAsync(product);
+            _logger.LogInformation("Product created successfully");
+            return CreatedAtRoute("GetProduct", new { id = product.Id.ToString() }, product);
+        }
+
+        [HttpDelete("{id:length(24)}")]
+        public async Task<IActionResult> DeleteById(string id)
+        {
+            var result = await _context.Products.DeleteOneAsync(p => p.Id == id);
+
+            if (result.DeletedCount == 0)
+            {
+                return NotFound();
+            }
+
+            return NoContent();
+        }
     }
 }
