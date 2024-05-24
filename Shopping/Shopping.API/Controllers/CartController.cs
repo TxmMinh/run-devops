@@ -51,5 +51,21 @@ namespace Shopping.API.Controllers
             _logger.LogInformation("Cart created successfully");
             return CreatedAtAction(nameof(Get), new { id = cart.Id }, cart);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(string id)
+        {
+            _logger.LogInformation($"Deleting cart with id: {id}");
+            var result = await _context.Carts.DeleteOneAsync(c => c.Id == id);
+            
+            if (result.DeletedCount == 0)
+            {
+                _logger.LogWarning($"No cart found with id: {id}");
+                return NotFound();
+            }
+
+            _logger.LogInformation($"Cart with id: {id} deleted successfully");
+            return NoContent();
+        }
     }
 }
