@@ -16,3 +16,41 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+}
+
+h1 {
+  color: #343a40;
+}
+
+.table {
+  width: 80%;
+  margin: auto;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  border: 1px solid #dee2e6;
+  padding: 10px;
+  text-align: left;
+}
+
+.table th {
+  background-color: #e9ecef;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

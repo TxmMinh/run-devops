@@ -2,14 +2,16 @@ var builder = WebApplication.CreateBuilder(args);
 
 var configuration = builder.Configuration;
 
-// Add http client services at ConfigureServices(IServiceCollection services)
+// Add http client services
 builder.Services.AddHttpClient("ShoppingAPIClient", client =>
 {
+    // Local environment
+    // client.BaseAddress = new Uri("http://host.docker.internal:5192/");
 
-    // client.BaseAddress = new Uri("http://host.docker.internal:5192/"); // Local environment
-    client.BaseAddress = new Uri(configuration["ShoppingAPIUrl"]); // Docker environment
-
+    // Docker environment
+    client.BaseAddress = new Uri(configuration["ShoppingAPIUrl"]);
 });
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
