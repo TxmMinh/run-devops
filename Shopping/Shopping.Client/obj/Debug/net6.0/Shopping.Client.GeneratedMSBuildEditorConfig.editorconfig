@@ -16,6 +16,22 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = E:\#UIT\33-Cloud-Computing\BTL\Azure-DevOps\run-devops\Shopping\Shopping.Client
 build_property._RazorSourceGeneratorDebug = 
 
+[E:/\#UIT/33-Cloud-Computing/BTL/Azure-DevOps/run-devops/Shopping/Shopping.Client/Views/Cart/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FydFxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/\#UIT/33-Cloud-Computing/BTL/Azure-DevOps/run-devops/Shopping/Shopping.Client/Views/Cart/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FydFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/\#UIT/33-Cloud-Computing/BTL/Azure-DevOps/run-devops/Shopping/Shopping.Client/Views/Home/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/\#UIT/33-Cloud-Computing/BTL/Azure-DevOps/run-devops/Shopping/Shopping.Client/Views/Home/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxEZXRhaWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/\#UIT/33-Cloud-Computing/BTL/Azure-DevOps/run-devops/Shopping/Shopping.Client/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
