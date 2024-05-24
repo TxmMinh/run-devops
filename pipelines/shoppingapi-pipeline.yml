@@ -35,7 +35,7 @@ stages:
   - job: Build
     displayName: Build
     pool:
-      name: MyAgentPool
+      name: AzurePool
     steps:
     - task: Docker@2
       displayName: Build and push an image to container registry
@@ -59,7 +59,7 @@ stages:
   - deployment: Deploy
     displayName: Deploy
     pool:
-      name: MyAgentPool
+      name: AzurePool
     environment: 'TxmMinhrundevops-1453.default'
     strategy:
       runOnce:
