@@ -211,3 +211,9 @@ kubectl get hpa
 
 - Get More information of Deployment:
 kubectl get deployment -o wide
+
+- Clean All AKS:
+kubectl delete -f .\aks\
+
+- Clean Azure resources:
+az group delete --name myResourceGroup --yes --no-wait
