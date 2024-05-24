@@ -44,6 +44,30 @@ namespace Shopping.Client.Controllers
         }
 
         [HttpPost]
+public async Task<IActionResult> Delete(string id)
+{
+    try
+    {
+        var response = await _httpClient.DeleteAsync($"/Cart/{id}");
+
+        if (!response.IsSuccessStatusCode)
+        {
+            _logger.LogError("Failed to delete cart. Status code: {StatusCode}, Response: {Response}", response.StatusCode, await response.Content.ReadAsStringAsync());
+            return View("Error", new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        _logger.LogInformation($"Cart with id: {id} deleted successfully");
+        return RedirectToAction("Index");
+    }
+    catch (Exception ex)
+    {
+        _logger.LogError(ex, "An error occurred while deleting the cart");
+        return View("Error", new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+    }
+}
+
+
+        [HttpPost]
         public async Task<IActionResult> AddToCart(Product product, int quantity)
         {
             try

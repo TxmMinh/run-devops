@@ -20,6 +20,7 @@ else
                 <th>Cart Date</th>
                 <th>Total Price</th>
                 <th>Items</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -37,9 +38,13 @@ else
                             }
                         </ul>
                     </td>
+                    <td>
+                        <form method="post" asp-action="Delete" asp-route-id="@cart.Id" onsubmit="return confirm('Are you sure you want to delete this cart?');">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
                 </tr>
             }
         </tbody>
     </table>
 }
-<p><a href="@Url.Action("Create", "Cart")" class="btn btn-primary">Add New Cart</a></p>
